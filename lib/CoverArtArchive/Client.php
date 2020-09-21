@@ -6,7 +6,7 @@ use CoverArtArchive\Api\Release;
 use CoverArtArchive\Api\ReleaseGroup;
 use CoverArtArchive\HttpClient\Builder;
 use Http\Client\Common\Plugin\AddHostPlugin;
-use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Discovery\UriFactoryDiscovery;
 
 /**
@@ -32,9 +32,10 @@ class Client
         $this->httpClientBuilder = $httpClientBuilder ?: new Builder();
 
         $this->httpClientBuilder->addPlugin(new AddHostPlugin(UriFactoryDiscovery::find()->createUri(self::BASE_URI)));
-        $this->httpClientBuilder->addPlugin(new HeaderDefaultsPlugin([
+        $this->httpClientBuilder->addPlugin(new RedirectPlugin());
+        $this->httpClientBuilder->addHeaders([
             'Accept' => 'application/json',
-        ]));
+        ]);
     }
 
     public function api($name)

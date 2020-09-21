@@ -14,7 +14,36 @@ Inspired by [php-github-api](https://github.com/KnpLabs/php-github-api) and [php
 
 Using composer:
 ```
-$ composer require stephan-strate/php-cover-art-archive-api
+$ composer require stephan-strate/php-cover-art-archive-api php-http/guzzle6-adapter
 ```
 
+Why `php-http/guzzle6-adapter`? This library is decoupled from any http client using [HTTPlug](http://httplug.io/).
+
 ## Usage
+
+First you want to create the client:
+```php
+$client = new \CoverArtArchive\Client();
+```
+
+Using this client, you can retrieve all other objects/apis.
+
+### Repository
+
+
+
+### Api
+
+The api implementation returns the raw json response of the endpoint. You might want to use the repository implementation instead to get the parsed objects.
+
+```php
+$release = $client->release();
+```
+
+## Help & Donate
+
+I am very curious about projects that use my libraries. Please drop me a short message about what you use the library for. You can find my contact information on my profile (LinkedIn, E-mail).
+
+If this project saved you time and money or you just appreciate what I am doing, please consider dropping a small donation 😊
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N2GAHNDPP6HXC&source=url"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" /></a>

@@ -81,4 +81,22 @@ class Builder
         $this->plugins[] = $plugin;
         $this->httpClientModified = true;
     }
+
+    public function removePlugin($fqcn)
+    {
+        foreach ($this->plugins as $idx => $plugin) {
+            if ($plugin instanceof $fqcn) {
+                unset($this->plugins[$idx]);
+                $this->httpClientModified = true;
+            }
+        }
+    }
+
+    public function addHeaders(array $headers)
+    {
+        $this->headers = array_merge($this->headers, $headers);
+
+        $this->removePlugin(Plugin\HeaderAppendPlugin::class);
+        $this->addPlugin(new Plugin\HeaderAppendPlugin($this->headers));
+    }
 }

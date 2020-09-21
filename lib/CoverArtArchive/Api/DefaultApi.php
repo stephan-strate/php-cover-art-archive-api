@@ -16,13 +16,13 @@ abstract class DefaultApi extends AbstractApi
 
     /**
      * @param $mbid
-     * @return mixed
+     * @return mixed|string
      * @see https://wiki.musicbrainz.org/Cover_Art_Archive/API#.2Frelease.2F.7Bmbid.7D.2F
      * @see https://wiki.musicbrainz.org/Cover_Art_Archive/API#.2Frelease-group.2F.7Bmbid.7D.2F
      */
     public function coverArt($mbid)
     {
-        return (string) $this->client->getHttpClient()->get($this->entityType . '/' . $mbid)->getBody();
+        return $this->get($this->entityType . '/' . $mbid);
     }
 
     public function coverArtFront($mbid)
