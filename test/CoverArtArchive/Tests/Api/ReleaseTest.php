@@ -2,9 +2,9 @@
 
 namespace CoverArtArchive\Tests\Api;
 
-use CoverArtArchive\Api\ReleaseGroup;
+use CoverArtArchive\Api\Release;
 
-final class ReleaseGroupTest extends TestCase
+final class ReleaseTest extends TestCase
 {
     public function testCoverArt()
     {
@@ -13,14 +13,14 @@ final class ReleaseGroupTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('release-group/test')
+            ->with('release/7e2dd507-6dde-3b1f-9c9c-82723dfeed0f')
             ->will($this->returnValue($expectedArray));
 
-        $this->assertEquals($expectedArray, $api->coverArt('test'));
+        $this->assertEquals($expectedArray, $api->coverArt('7e2dd507-6dde-3b1f-9c9c-82723dfeed0f'));
     }
 
     protected function getApiClass()
     {
-        return ReleaseGroup::class;
+        return Release::class;
     }
 }

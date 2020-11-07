@@ -7,6 +7,7 @@ use CoverArtArchive\Api\ReleaseGroup;
 use CoverArtArchive\HttpClient\Builder;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
+use Http\Client\HttpClient;
 use Http\Discovery\UriFactoryDiscovery;
 
 /**
@@ -66,5 +67,11 @@ class Client
     public function getHttpClientBuilder()
     {
         return $this->httpClientBuilder;
+    }
+
+    public static function createWithHttpClient(HttpClient $httpClient)
+    {
+        $builder = new Builder($httpClient);
+        return new self($builder);
     }
 }

@@ -40,10 +40,10 @@ The api implementation returns the raw json response of the endpoint. You might 
 $release = $client->release();
 ```
 
+## Contributing
+
 ## Help & Donate
 
 I am very curious about projects that use my libraries. Please drop me a short message about what you use the library for. You can find my contact information on my profile (LinkedIn, E-mail).
 
-If this project saved you time and money or you just appreciate what I am doing, please consider dropping a small donation 😊
-
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N2GAHNDPP6HXC&source=url"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" /></a>
+If this project saved you time and money or you just appreciate what I am doing, please consider sponsoring me 😊
