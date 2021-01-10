@@ -3,15 +3,16 @@
 namespace CoverArtArchive\Tests\Api;
 
 use CoverArtArchive\Client;
+use PHPUnit\Framework\MockObject\MockObject;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    abstract protected function getApiClass();
+    abstract protected function getApiClass(): string;
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject
+     * @return MockObject
      */
-    protected function getApiMock()
+    protected function getApiMock(): MockObject
     {
         $httpClient = $this->getMockBuilder(\Http\Client\HttpClient::class)
             ->setMethods(['sendRequest'])
@@ -28,7 +29,13 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             ->getMock();
     }
 
-    protected function getMethod($object, $methodName)
+    /**
+     * @param $object
+     * @param $methodName
+     * @return \ReflectionMethod
+     * @throws \ReflectionException
+     */
+    protected function getMethod($object, $methodName): \ReflectionMethod
     {
         $method = new \ReflectionMethod($object, $methodName);
         $method->setAccessible(true);

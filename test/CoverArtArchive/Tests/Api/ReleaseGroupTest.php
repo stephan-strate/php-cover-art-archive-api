@@ -3,23 +3,19 @@
 namespace CoverArtArchive\Tests\Api;
 
 use CoverArtArchive\Api\ReleaseGroup;
+use CoverArtArchive\Exception\NotImplementedException;
 
 final class ReleaseGroupTest extends TestCase
 {
-    public function testCoverArt()
+    public function testCoverArtId()
     {
-        $expectedArray = [];
+        $this->expectException(NotImplementedException::class);
 
         $api = $this->getApiMock();
-        $api->expects($this->once())
-            ->method('get')
-            ->with('release-group/test')
-            ->will($this->returnValue($expectedArray));
-
-        $this->assertEquals($expectedArray, $api->coverArt('test'));
+        $api->coverArtId('7e2dd507-6dde-3b1f-9c9c-82723dfeed0f', '1');
     }
 
-    protected function getApiClass()
+    protected function getApiClass(): string
     {
         return ReleaseGroup::class;
     }
