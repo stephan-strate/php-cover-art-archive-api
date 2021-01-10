@@ -2,14 +2,19 @@
     "name": "stephan-strate/php-cover-art-archive-api",
     "type": "library",
     "description": "PHP wrapper for CoverArtArchive api. Supports object-oriented access using repositories and factories.",
-    "keywords": ["coverart", "library", "php", "api"],
+    "keywords": [
+        "coverart",
+        "library",
+        "php",
+        "api"
+    ],
     "homepage": "https://github.com/stephan-strate/php-cover-art-archive-api",
     "license": "MIT",
     "authors": [
         {
             "name": "Stephan Strate",
-            "email": "hi@stephan-strate.de",
-            "homepage": "https://www.stephan-strate.de",
+            "email": "hello@stephan.codes",
+            "homepage": "https://stephan.codes",
             "role": "Developer"
         }
     ],
@@ -19,7 +24,7 @@
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.10",
         "php-http/client-implementation": "^1.0",
-        "netresearch/jsonmapper": "^3.1",
+        "symfony/serializer": "^5.2",
         "ext-json": "*"
     },
     "require-dev": {

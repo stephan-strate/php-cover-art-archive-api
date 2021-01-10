@@ -1,18 +1,24 @@
-# v0.0.2-alpha
-## mm/dd/yyyy
+# Changelog
+All notable changes to this project will be documented in this file.
 
-1. [](#new)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-1. [](#improved)
+## [Unreleased]
+### Added
+- Basic test setup
 
-1. [](#bugfix)
-    
-# v0.0.1-alpha
-## 11/07/2020
+### Changed
+- Replaced "netresearch/jsonmapper" with symfonys serializer to deserialize api responses
 
-1. [](#new)
-    * Introduced basic api wrapper structure
-    * Added [documented](https://musicbrainz.org/doc/Cover_Art_Archive/API) endpoints
-    * Added models for all endpoints
-    * Added object-oriented response mapping for all endpoints
-    
+### Removed
+
+## [0.0.1-alpha] - 2020-11-07
+### Added
+- Introduced basic api wrapper structure
+- Added [documented](https://musicbrainz.org/doc/Cover_Art_Archive/API) endpoints
+- Added models for all endpoints
+- Added object-oriented response mapping for all endpoints
+
+[Unreleased]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v0.0.1-alpha...HEAD
+[0.0.1-alpha]: https://github.com/stephan-strate/php-cover-art-archive-api/releases/tag/v0.0.1-alpha

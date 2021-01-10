@@ -3,6 +3,9 @@
 namespace CoverArtArchive\Repository;
 
 use CoverArtArchive\Client;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 abstract class AbstractRepository
 {
@@ -13,7 +16,10 @@ abstract class AbstractRepository
     public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->mapper = new \JsonMapper();
+
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $this->mapper = new Serializer($normalizers, $encoders);
     }
 
     abstract public function getApi();

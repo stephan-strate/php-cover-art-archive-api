@@ -7,7 +7,7 @@ abstract class DefaultRepository extends AbstractRepository
     public function coverArt($mbid)
     {
         $response = $this->getApi()->coverArt($mbid);
-        return $this->mapper->map($response, $this->getClass());
+        return $this->mapper->deserialize($response, $this->getClass(), 'json');
     }
 
     public function coverArtId($mbid, $id, $size = null)

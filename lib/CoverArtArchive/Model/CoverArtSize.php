@@ -2,7 +2,7 @@
 
 namespace CoverArtArchive\Model;
 
-abstract class CoverArtSize
+interface CoverArtSize
 {
     const Small = 250;
     const Medium = 500;

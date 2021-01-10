@@ -25,12 +25,24 @@ abstract class DefaultApi extends AbstractApi
         return $this->get($this->entityType . '/' . $mbid);
     }
 
+    /**
+     *
+     * @param      $mbid
+     * @param      $id
+     * @param null $size
+     * @return mixed|string
+     */
     public function coverArtId($mbid, $id, $size = null)
     {
         $sizeFormatted = $size !== null ? '-' . $size : '';
         return $this->get($this->entityType . '/' . $mbid . '/' . $id . $sizeFormatted);
     }
 
+    /**
+     * @param      $mbid
+     * @param null $size
+     * @return mixed|string
+     */
     public function coverArtFront($mbid, $size = null)
     {
         return $this->coverArtId($mbid, 'front', $size);
