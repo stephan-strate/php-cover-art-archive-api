@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * This file is part of the CoverArtArchive API Wrapper created by Stephan Strate.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @package CoverArtArchive\Model
+ * @author Stephan Strate <hello@stephan.codes>
+ * @link https://github.com/stephan-strate/php-cover-art-archive-api
+ * @copyright (c) 2021, Stephan Strate
+ * @version 0.0.1
+ */
+
 namespace CoverArtArchive\Model;
 
 /**
@@ -26,7 +39,7 @@ class Release
      * @return Image    front image
      * @throws \Exception   if no front image is available
      */
-    public function getFront()
+    public function front()
     {
         foreach ($this->images as $image) {
             if ($image->front) {
@@ -42,7 +55,7 @@ class Release
      * @return Image    back image
      * @throws \Exception   if no back image is available
      */
-    public function getBack()
+    public function back()
     {
         foreach ($this->images as $image) {
             if ($image->back) {

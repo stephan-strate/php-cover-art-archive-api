@@ -30,7 +30,28 @@ Using this client, you can retrieve all other objects/apis.
 
 ### Repository
 
+The repository implementation takes the decoded json response and maps it to a matching model. This is the preferred way of using the library.
 
+```php
+$repository = new \CoverArtArchive\Repository\ReleaseGroupRepository($client);
+$repository->coverArt('19e6209b-2ddc-30b8-9273-484bd075fe7b');
+```
+
+#### Images
+
+As the CoverArtArchive serves, as the name implies, images. Therefore the repository can also return image resources.
+
+```php
+$repository = new \CoverArtArchive\Repository\ReleaseRepository($client);
+$image = $repository->coverArtFront('7416e707-94b5-3810-b6b8-4229ab2182ec');
+
+// outputs the image to the user
+if ($image !== false) {
+    header('Content-Type: image/png');
+    imagepng($image);
+    imagedestroy($image);
+}
+```
 
 ### Api
 
@@ -38,6 +59,7 @@ The api implementation returns the raw json response of the endpoint. You might 
 
 ```php
 $release = $client->release();
+$release->coverArt('7416e707-94b5-3810-b6b8-4229ab2182ec');
 ```
 
 ## Contributing

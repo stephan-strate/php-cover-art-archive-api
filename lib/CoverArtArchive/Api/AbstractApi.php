@@ -1,10 +1,27 @@
 <?php
 
+/**
+ * This file is part of the CoverArtArchive API Wrapper created by Stephan Strate.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @package CoverArtArchive\Api
+ * @author Stephan Strate <hello@stephan.codes>
+ * @link https://github.com/stephan-strate/php-cover-art-archive-api
+ * @copyright (c) 2021, Stephan Strate
+ * @version 0.0.1
+ */
+
 namespace CoverArtArchive\Api;
 
 use CoverArtArchive\Client;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class AbstractApi
+ * @package CoverArtArchive\Api
+ */
 abstract class AbstractApi
 {
     /**
@@ -17,6 +34,12 @@ abstract class AbstractApi
         $this->client = $client;
     }
 
+    /**
+     * Performs get request and parses the content.
+     * @param $path
+     * @return mixed|string
+     * @throws \Http\Client\Exception
+     */
     public function get($path)
     {
         $response = $this->client
@@ -27,9 +50,11 @@ abstract class AbstractApi
     }
 
     /**
-     * @param ResponseInterface $response
-     * @param bool              $asArray
-     * @return mixed|string
+     * Decode content from response. Regularly decodes json content from response, when
+     * available.
+     * @param ResponseInterface $response   response
+     * @param bool              $asArray    decode as array
+     * @return mixed|string                 decoded response
      */
     protected static function getContent(ResponseInterface $response, bool $asArray = false)
     {
