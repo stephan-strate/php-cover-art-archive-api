@@ -15,38 +15,30 @@
 
 namespace CoverArtArchive\Repository;
 
-use CoverArtArchive\Exception\NotImplementedException;
+use CoverArtArchive\Api\ReleaseGroup;
 use CoverArtArchive\Model\Release;
 
 /**
- * Class ReleaseGroupRepository
+ * Specific repository implementation for release groups.
  * @package CoverArtArchive\Repository
+ * @extends DefaultRepository<Release>
  */
 class ReleaseGroupRepository extends DefaultRepository
 {
     /**
-     * @param      $mbid
-     * @param      $id
-     * @param null $size
-     * @return array|mixed|object|void
+     * {@inheritdoc}
+     * @return ReleaseGroup
      */
-    public function coverArtId($mbid, $id, $size = null)
-    {
-        throw new NotImplementedException();
-    }
-
-    /**
-     * @return \CoverArtArchive\Api\ReleaseGroup
-     */
-    public function getApi()
+    public function getApi(): ReleaseGroup
     {
         return $this->client->releaseGroup();
     }
 
     /**
+     * {@inheritdoc}
      * @return Release
      */
-    public function getClass()
+    public function getClass(): Release
     {
         return new Release();
     }

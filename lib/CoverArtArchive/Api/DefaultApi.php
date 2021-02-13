@@ -16,49 +16,53 @@
 namespace CoverArtArchive\Api;
 
 /**
- * Class DefaultApi
+ * CoverArtArchive offers different endpoints with similar parameters
+ * and options. They all differ from the requested entity type.
+ * This is the default implementation for all endpoints.
  * @package CoverArtArchive\Api
  * @see https://wiki.musicbrainz.org/Cover_Art_Archive/API
  */
 abstract class DefaultApi extends AbstractApi
 {
     /**
+     * Requested entity type.
      * @var string
      */
-    protected $entityType;
+    protected string $entityType;
 
     /**
-     * @param $mbid
+     * Fetches listing of available cover art for given MusicBrainz identifier.
+     * @param string $mbid  MusicBrainz identifier
      * @return mixed|string
-     * @throws \Http\Client\Exception
      * @see https://wiki.musicbrainz.org/Cover_Art_Archive/API#.2Frelease.2F.7Bmbid.7D.2F
      * @see https://wiki.musicbrainz.org/Cover_Art_Archive/API#.2Frelease-group.2F.7Bmbid.7D.2F
      */
-    public function coverArt($mbid)
+    public function coverArt(string $mbid)
     {
         return $this->get($this->entityType . '/' . $mbid);
     }
 
     /**
-     * @param      $mbid
-     * @param      $id
-     * @param null $size
+     * Fetch specific piece of artwork. The possible id values can be found by parsing the
+     * response of {@link \CoverArtArchive\Api\DefaultApi::coverArt()}.
+     * @param string    $mbid   MusicBrainz identifier
+     * @param string    $id     unique id of specific artwork
+     * @param ?int      $size   width value (possible values can be found in {@link \CoverArtArchive\Model\CoverArtSize})
      * @return mixed|string
-     * @throws \Http\Client\Exception
      */
-    public function coverArtId($mbid, $id, $size = null)
+    public function coverArtId(string $mbid, string $id, ?int $size = null)
     {
         $sizeFormatted = $size !== null ? '-' . $size : '';
         return $this->get($this->entityType . '/' . $mbid . '/' . $id . $sizeFormatted);
     }
 
     /**
-     * @param      $mbid
-     * @param null $size
+     * Fetch the image that is most suitable to be called the "front" cover art.
+     * @param string    $mbid   MusicBrainz identifier
+     * @param ?int      $size   width value (possible values can be found in {@link \CoverArtArchive\Model\CoverArtSize})
      * @return mixed|string
-     * @throws \Http\Client\Exception
      */
-    public function coverArtFront($mbid, $size = null)
+    public function coverArtFront(string $mbid, ?int $size = null)
     {
         return $this->coverArtId($mbid, 'front', $size);
     }

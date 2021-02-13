@@ -15,8 +15,11 @@
 
 namespace CoverArtArchive\Model;
 
+// keep this import, used in phpdoc to deserialize numeric keys
+use Symfony\Component\Serializer\Annotation\SerializedName;
+
 /**
- * Class Thumbnails
+ * Thumbnails model. Represents different sizes of a single cover art.
  * @package CoverArtArchive\Model
  * @see https://musicbrainz.org/doc/Cover_Art_Archive/API#Cover_Art_Archive_Metadata
  */
@@ -24,11 +27,29 @@ class Thumbnails
 {
     /**
      * @var string
+     * @SerializedName("1200")
      */
-    public $large;
+    public string $w1200;
+
+    /**
+     * @var string
+     * @SerializedName("500")
+     */
+    public string $w500;
+
+    /**
+     * @var string
+     * @SerializedName("250")
+     */
+    public string $w250;
 
     /**
      * @var string
      */
-    public $small;
+    public string $large;
+
+    /**
+     * @var string
+     */
+    public string $small;
 }

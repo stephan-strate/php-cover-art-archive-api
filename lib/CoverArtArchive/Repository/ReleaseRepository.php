@@ -18,34 +18,38 @@ namespace CoverArtArchive\Repository;
 use CoverArtArchive\Model\Release;
 
 /**
- * Class ReleaseRepository
+ * Specific repository implementation for single release.
  * @package CoverArtArchive\Repository
+ * @extends DefaultRepository<Release>
  */
 class ReleaseRepository extends DefaultRepository
 {
     /**
-     * @param      $mbid
-     * @param null $size
-     * @return mixed|string
-     * @throws \Http\Client\Exception
+     * Fetch the image that is most suitable to be called the "back" cover art.
+     * @param string    $mbid   MusicBrainz identifier
+     * @param ?int      $size   width value (possible values can be found in {@link \CoverArtArchive\Model\CoverArtSize})
+     * @return Release
      */
-    public function coverArtBack($mbid, $size = null)
+    public function coverArtBack(string $mbid, ?int $size = null): Release
     {
-        return $this->getApi()->coverArtBack($mbid, $size);
+        $response = $this->getApi()->coverArtBack($mbid, $size);
+        return $this->mapResponse($response);
     }
 
     /**
+     * {@inheritdoc}
      * @return \CoverArtArchive\Api\Release
      */
-    public function getApi()
+    public function getApi(): \CoverArtArchive\Api\Release
     {
         return $this->client->release();
     }
 
     /**
+     * {@inheritdoc}
      * @return Release
      */
-    public function getClass()
+    public function getClass(): Release
     {
         return new Release();
     }

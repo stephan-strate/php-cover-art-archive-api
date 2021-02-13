@@ -16,7 +16,8 @@
 namespace CoverArtArchive\Model;
 
 /**
- * Interface CoverArtSize
+ * CoverArtArchive offers different sizes of cover arts.
+ * This interface reflects available size options to use in request functions.
  * @package CoverArtArchive\Model
  */
 interface CoverArtSize

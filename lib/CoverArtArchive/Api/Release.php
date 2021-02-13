@@ -16,20 +16,20 @@
 namespace CoverArtArchive\Api;
 
 /**
- * Class Release
+ * Specific api implementation for single releases.
  * @package CoverArtArchive\Api
  */
 class Release extends DefaultApi
 {
-    protected $entityType = 'release';
+    protected string $entityType = 'release';
 
     /**
-     * @param      $mbid
-     * @param null $size
+     * Fetch the image that is most suitable to be called the "back" cover art.
+     * @param string    $mbid   MusicBrainz identifier
+     * @param ?int      $size   width value (possible values can be found in {@link \CoverArtArchive\Model\CoverArtSize})
      * @return mixed|string
-     * @throws \Http\Client\Exception
      */
-    public function coverArtBack($mbid, $size = null)
+    public function coverArtBack(string $mbid, ?int $size = null)
     {
         return $this->coverArtId($mbid, 'back', $size);
     }

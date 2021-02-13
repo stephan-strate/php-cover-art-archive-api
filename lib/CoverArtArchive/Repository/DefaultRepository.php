@@ -15,45 +15,58 @@
 
 namespace CoverArtArchive\Repository;
 
+use CoverArtArchive\Api\DefaultApi;
+
 /**
- * Class DefaultRepository
+ * CoverArtArchive offers different endpoints with similar parameters
+ * and options. They all differ from the requested entity type.
+ * This is the default implementation for all endpoints.
  * @package CoverArtArchive\Repository
+ * @template T
+ * @extends AbstractRepository<T>
  */
 abstract class DefaultRepository extends AbstractRepository
 {
     /**
-     * @param $mbid
-     * @return array|mixed|object
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * Fetches listing of available cover art for given MusicBrainz identifier.
+     * @param string $mbid  MusicBrainz identifier
+     * @return T
      */
-    public function coverArt($mbid)
+    public function coverArt(string $mbid)
     {
         $response = $this->getApi()->coverArt($mbid);
         return $this->mapResponse($response);
     }
 
     /**
-     * @param      $mbid
-     * @param      $id
-     * @param null $size
-     * @return array|mixed|object
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * Fetch specific piece of artwork. The possible id values can be found by parsing the
+     * response of {@link \CoverArtArchive\Repository\DefaultRepository::coverArt()}.
+     * @param string    $mbid   MusicBrainz identifier
+     * @param string    $id     unique id of specific artwork
+     * @param ?int      $size   width value (possible values can be found in {@link \CoverArtArchive\Model\CoverArtSize})
+     * @return resource|false   image resource
      */
-    public function coverArtId($mbid, $id, $size = null)
+    public function coverArtId(string $mbid, string $id, ?int $size = null)
     {
         $response = $this->getApi()->coverArtId($mbid, $id, $size);
         return imagecreatefromstring($response);
     }
 
     /**
-     * @param      $mbid
-     * @param null $size
-     * @return array|mixed|object
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * Fetch the image that is most suitable to be called the "front" cover art.
+     * @param string $mbid  MusicBrainz identifier
+     * @param ?int $size    width value (possible values can be found in {@link \CoverArtArchive\Model\CoverArtSize})
+     * @return false|resource   image resource
      */
-    public function coverArtFront($mbid, $size = null)
+    public function coverArtFront(string $mbid, ?int $size = null)
     {
         $response = $this->getApi()->coverArtFront($mbid, $size);
         return imagecreatefromstring($response);
     }
+
+    /**
+     * {@inheritdoc}
+     * @return DefaultApi
+     */
+    abstract public function getApi(): DefaultApi;
 }

@@ -16,7 +16,7 @@
 namespace CoverArtArchive\Model;
 
 /**
- * Class Release
+ * Release model with images available as well additional properties.
  * @package CoverArtArchive\Model
  * @see https://musicbrainz.org/doc/Cover_Art_Archive/API#Cover_Art_Archive_Metadata
  */
@@ -24,22 +24,22 @@ class Release
 {
     /**
      * All available images.
-     * @var Image[]
+     * @var array<Image>
      */
-    public $images;
+    public array $images;
 
     /**
      * Link to the musicbrainz release.
      * @var string
      */
-    public $release;
+    public string $release;
 
     /**
      * Get "main front" image of images.
      * @return Image    front image
      * @throws \Exception   if no front image is available
      */
-    public function front()
+    public function front(): Image
     {
         foreach ($this->images as $image) {
             if ($image->front) {
@@ -55,7 +55,7 @@ class Release
      * @return Image    back image
      * @throws \Exception   if no back image is available
      */
-    public function back()
+    public function back(): Image
     {
         foreach ($this->images as $image) {
             if ($image->back) {

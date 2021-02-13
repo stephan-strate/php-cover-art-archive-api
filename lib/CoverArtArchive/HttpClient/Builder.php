@@ -16,90 +16,115 @@
 namespace CoverArtArchive\HttpClient;
 
 use Http\Client\Common\HttpMethodsClient;
+use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin;
 use Http\Client\Common\PluginClientFactory;
-use Http\Client\HttpClient;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
-use Http\Discovery\StreamFactoryDiscovery;
-use Http\Message\RequestFactory;
-use Http\Message\StreamFactory;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 /**
- * Class Builder
+ * Compose customized http client from plugins and default headers.
  * @package CoverArtArchive\HttpClient
  */
 class Builder
 {
     /**
-     * @var HttpClient
+     * Object that sends the http messages.
+     * @var \Psr\Http\Client\ClientInterface
      */
-    private $httpClient;
+    private ClientInterface $httpClient;
 
     /**
-     * @var HttpMethodsClient
+     * Http client composition with plugins.
+     * @var \Http\Client\Common\HttpMethodsClientInterface
      */
-    private $pluginClient;
+    private HttpMethodsClientInterface $pluginClient;
 
     /**
-     * @var RequestFactory
+     * Factory to create requests. Used in {@link \CoverArtArchive\HttpClient\Builder::$pluginClient}.
+     * @var \Psr\Http\Message\RequestFactoryInterface
      */
-    private $requestFactory;
+    private RequestFactoryInterface $requestFactory;
 
     /**
-     * @var StreamFactory
+     * Factory to create streams. Used in {@link \CoverArtArchive\HttpClient\Builder::$pluginClient}.
+     * @var \Psr\Http\Message\StreamFactoryInterface
      */
-    private $streamFactory;
+    private StreamFactoryInterface $streamFactory;
 
     /**
+     * True if we should create a new {@link \CoverArtArchive\HttpClient\Builder::$pluginClient} at next request.
      * @var bool
      */
-    private $httpClientModified = true;
+    private bool $httpClientModified = true;
 
     /**
-     * @var Plugin[]
+     * List of plugins that are already added or will be added to
+     * {@link \CoverArtArchive\HttpClient\Builder::$pluginClient}.
+     * @var array<Plugin>
      */
-    private $plugins = [];
+    private array $plugins = [];
 
     /**
-     * Http headers.
-     *
-     * @var array
+     * Default http headers.
+     * @var array<string, string>
      */
-    private $headers = [];
+    private array $headers = [];
 
-
+    /**
+     * Use custom properties or find installed client/factories.
+     * @param \Psr\Http\Client\ClientInterface|null          $httpClient
+     * @param \Psr\Http\Message\RequestFactoryInterface|null $requestFactory
+     * @param \Psr\Http\Message\StreamFactoryInterface|null  $streamFactory
+     */
     public function __construct(
-        HttpClient $httpClient = null,
-        RequestFactory  $requestFactory = null,
-        StreamFactory $streamFactory = null
+        ClientInterface $httpClient = null,
+        RequestFactoryInterface  $requestFactory = null,
+        StreamFactoryInterface $streamFactory = null
     ) {
-        $this->httpClient = $httpClient ?: HttpClientDiscovery::find();
-        $this->requestFactory = $requestFactory ?: MessageFactoryDiscovery::find();
-        $this->streamFactory = $streamFactory ?: StreamFactoryDiscovery::find();
+        $this->httpClient = $httpClient ?: Psr18ClientDiscovery::find();
+        $this->requestFactory = $requestFactory ?: Psr17FactoryDiscovery::findRequestFactory();
+        $this->streamFactory = $streamFactory ?: Psr17FactoryDiscovery::findStreamFactory();
     }
 
-    public function getHttpClient()
+    /**
+     * Returns http client with plugins. The client is updated automatically,
+     * when retrieving a new one.
+     * @return \Http\Client\Common\HttpMethodsClientInterface
+     */
+    public function getHttpClient(): HttpMethodsClientInterface
     {
         if ($this->httpClientModified) {
             $this->httpClientModified = false;
 
             $this->pluginClient = new HttpMethodsClient(
                 (new PluginClientFactory())->createClient($this->httpClient, $this->plugins),
-                $this->requestFactory
+                $this->requestFactory,
+                $this->streamFactory
             );
         }
 
         return $this->pluginClient;
     }
 
-    public function addPlugin(Plugin $plugin)
+    /**
+     * Add a new plugin to the end of the plugins chain.
+     * @param \Http\Client\Common\Plugin $plugin    plugin to add
+     */
+    public function addPlugin(Plugin $plugin): void
     {
         $this->plugins[] = $plugin;
         $this->httpClientModified = true;
     }
 
-    public function removePlugin($fqcn)
+    /**
+     * Remove a plugin by its fully qualified class name (FQCN).
+     * @param string $fqcn  fully qualified class name
+     */
+    public function removePlugin(string $fqcn): void
     {
         foreach ($this->plugins as $idx => $plugin) {
             if ($plugin instanceof $fqcn) {
@@ -109,7 +134,11 @@ class Builder
         }
     }
 
-    public function addHeaders(array $headers)
+    /**
+     * Add default http headers.
+     * @param array<string, string> $headers
+     */
+    public function addHeaders(array $headers): void
     {
         $this->headers = array_merge($this->headers, $headers);
 

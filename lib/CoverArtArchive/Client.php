@@ -15,16 +15,18 @@
 
 namespace CoverArtArchive;
 
+use CoverArtArchive\Api\AbstractApi;
 use CoverArtArchive\Api\Release;
 use CoverArtArchive\Api\ReleaseGroup;
 use CoverArtArchive\HttpClient\Builder;
+use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\HttpClient;
-use Http\Discovery\UriFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Psr\Http\Client\ClientInterface;
 
 /**
- * Class Client
+ * CoverArtArchive api client.
  * @method Release release()
  * @method ReleaseGroup releaseGroup()
  * @package CoverArtArchive
@@ -32,27 +34,40 @@ use Http\Discovery\UriFactoryDiscovery;
 class Client
 {
     /**
-     *
+     * CoverArtArchive base uri.
+     * @link https://beta.musicbrainz.org/doc/Cover_Art_Archive/API
      */
     const BASE_URI = 'https://coverartarchive.org';
 
     /**
+     * Customized http client with plugins.
      * @var Builder
      */
-    private $httpClientBuilder;
+    private Builder $httpClientBuilder;
 
+    /**
+     * Create api client with default builder or provide base builder.
+     * @param \CoverArtArchive\HttpClient\Builder|null $httpClientBuilder
+     */
     public function __construct(Builder $httpClientBuilder = null)
     {
         $this->httpClientBuilder = $httpClientBuilder ?: new Builder();
 
-        $this->httpClientBuilder->addPlugin(new AddHostPlugin(UriFactoryDiscovery::find()->createUri(self::BASE_URI)));
+        $uriInterface = Psr17FactoryDiscovery::findUriFactory()->createUri(self::BASE_URI);
+        $this->httpClientBuilder->addPlugin(new AddHostPlugin($uriInterface));
         $this->httpClientBuilder->addPlugin(new RedirectPlugin());
+
         $this->httpClientBuilder->addHeaders([
             'Accept' => 'application/json',
         ]);
     }
 
-    public function api($name)
+    /**
+     * Get api instance by name.
+     * @param string $name  api name
+     * @return AbstractApi  api instance
+     */
+    public function api(string $name): AbstractApi
     {
         switch ($name) {
             case 'release':
@@ -67,22 +82,33 @@ class Client
         }
     }
 
-    public function __call($name, $args)
+    /**
+     * Publish api instances as implicit class functions.
+     * @param string $name  api name
+     * @param mixed  $args
+     * @return AbstractApi  api instance
+     */
+    public function __call(string $name, $args): AbstractApi
     {
         return $this->api($name);
     }
 
-    public function getHttpClient()
+    /**
+     * Get the configured http client to perform requests.
+     * @return \Http\Client\Common\HttpMethodsClientInterface
+     */
+    public function getHttpClient(): HttpMethodsClientInterface
     {
         return $this->httpClientBuilder->getHttpClient();
     }
 
-    public function getHttpClientBuilder()
-    {
-        return $this->httpClientBuilder;
-    }
-
-    public static function createWithHttpClient(HttpClient $httpClient)
+    /**
+     * Create api client with predefined http client.
+     * Can eg. be used for mocking in tests.
+     * @param \Psr\Http\Client\ClientInterface $httpClient
+     * @return \CoverArtArchive\Client
+     */
+    public static function createWithHttpClient(ClientInterface $httpClient): self
     {
         $builder = new Builder($httpClient);
         return new self($builder);

@@ -15,24 +15,11 @@
 
 namespace CoverArtArchive\Api;
 
-use CoverArtArchive\Exception\NotImplementedException;
-
 /**
- * Class ReleaseGroup
+ * Specific api implementation for release groups.
  * @package CoverArtArchive\Api
  */
 class ReleaseGroup extends DefaultApi
 {
-    protected $entityType = 'release-group';
-
-    /**
-     * @param      $mbid
-     * @param      $id
-     * @param null $size
-     * @return mixed|string|void
-     */
-    public function coverArtId($mbid, $id, $size = null)
-    {
-        throw new NotImplementedException();
-    }
+    protected string $entityType = 'release-group';
 }

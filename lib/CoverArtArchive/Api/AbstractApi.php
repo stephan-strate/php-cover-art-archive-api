@@ -16,56 +16,54 @@
 namespace CoverArtArchive\Api;
 
 use CoverArtArchive\Client;
-use Psr\Http\Message\ResponseInterface;
+use CoverArtArchive\HttpClient\Message\ResponseMediator;
+use Http\Client\Exception;
+use Http\Message\Exception\UnexpectedValueException;
 
 /**
- * Class AbstractApi
+ * Basic api implementation to us in other apis.
  * @package CoverArtArchive\Api
  */
 abstract class AbstractApi
 {
     /**
+     * The http client instance.
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
+    /**
+     * Create new api instance.
+     * Make http client available to the api instance.
+     * @param \CoverArtArchive\Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
     /**
-     * Performs get request and parses the content.
-     * @param $path
-     * @return mixed|string
-     * @throws \Http\Client\Exception
+     * Send a GET request with query parameters.
+     * @param string                $path           request path
+     * @param array<string, string> $parameters     query parameters (appended to request path)
+     * @param array<string, string> $requestHeaders request headers
+     * @return mixed|string associative array, when valid json response
+     *                      or raw response as string
      */
-    public function get($path)
+    public function get(string $path, array $parameters = [], array $requestHeaders = [])
     {
-        $response = $this->client
-            ->getHttpClient()
-            ->get($path);
-
-        return self::getContent($response);
-    }
-
-    /**
-     * Decode content from response. Regularly decodes json content from response, when
-     * available.
-     * @param ResponseInterface $response   response
-     * @param bool              $asArray    decode as array
-     * @return mixed|string                 decoded response
-     */
-    protected static function getContent(ResponseInterface $response, bool $asArray = false)
-    {
-        $body = (string) $response->getBody();
-        if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
-            $content = json_decode($body, $asArray);
-            if (JSON_ERROR_NONE === json_last_error()) {
-                return $content;
-            }
+        // build query parameters and append to request path
+        if (count($parameters) > 0) {
+            $path .= '?' . http_build_query($parameters, '', '&', PHP_QUERY_RFC3986);
         }
 
-        return $body;
+        try {
+            $response = $this->client
+                ->getHttpClient()
+                ->get($path, $requestHeaders);
+            return ResponseMediator::getContent($response);
+        } catch (Exception $e) {
+            throw new UnexpectedValueException('Request failed', 723497812);
+        }
     }
 }

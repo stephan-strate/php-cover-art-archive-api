@@ -6,5 +6,5 @@ use CoverArtArchive\Api\DefaultApi;
 
 class TestApi extends DefaultApi
 {
-    protected $entityType = 'test';
+    protected string $entityType = 'test';
 }

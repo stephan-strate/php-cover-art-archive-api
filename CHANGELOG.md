@@ -8,8 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- fix PHPStan issues
+- documentation and typehint updates
+- update composer dependencies
 
 ### Removed
+- drop PHP < 7.4 support
 
 ## [0.0.3-alpha] - 2021-01-30
 ### Added

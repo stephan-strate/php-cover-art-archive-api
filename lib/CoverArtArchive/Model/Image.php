@@ -16,7 +16,7 @@
 namespace CoverArtArchive\Model;
 
 /**
- * Class Image
+ * Single image model with additional properties.
  * @package CoverArtArchive\Model
  * @see https://musicbrainz.org/doc/Cover_Art_Archive/API#Cover_Art_Archive_Metadata
  */
@@ -26,53 +26,53 @@ class Image
      * Whether the image was approved by the musicbrainz edit system.
      * @var bool
      */
-    public $approved;
+    public bool $approved;
 
     /**
      * Indicates if this is the "main back".
      * @var bool
      */
-    public $back;
+    public bool $back;
 
     /**
      * A free text comment.
      * @var string
      */
-    public $comment;
+    public string $comment;
 
     /**
      * The edit id on musicbrainz.
      * @var int
      */
-    public $edit;
+    public int $edit;
 
     /**
      * Indicates if this is the "main front".
      * @var bool
      */
-    public $front;
+    public bool $front;
 
     /**
      * Archive.org's interval file id.
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * The full coverartarchive.org url to the original image.
      * @var string
      */
-    public $image;
+    public string $image;
 
     /**
      * Object containing different sizes of images.
      * @var Thumbnails
      */
-    public $thumbnails;
+    public Thumbnails $thumbnails;
 
     /**
      * List of zero or more types for the image.
-     * @var string[]
+     * @var array<string>
      */
-    public $types;
+    public array $types;
 }
