@@ -226,16 +226,16 @@
         },
         {
             "name": "php-http/client-common",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/client-common.git",
-                "reference": "29e0c60d982f04017069483e832b92074d0a90b2"
+                "reference": "d135751167d57e27c74de674d6a30cef2dc8e054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/client-common/zipball/29e0c60d982f04017069483e832b92074d0a90b2",
-                "reference": "29e0c60d982f04017069483e832b92074d0a90b2",
+                "url": "https://api.github.com/repos/php-http/client-common/zipball/d135751167d57e27c74de674d6a30cef2dc8e054",
+                "reference": "d135751167d57e27c74de674d6a30cef2dc8e054",
                 "shasum": ""
             },
             "require": {
@@ -246,14 +246,14 @@
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0",
-                "symfony/options-resolver": "^2.6 || ^3.4.20 || ~4.0.15 || ~4.1.9 || ^4.2.1 || ^5.0",
+                "symfony/options-resolver": "~4.0.15 || ~4.1.9 || ^4.2.1 || ^5.0 || ^6.0",
                 "symfony/polyfill-php80": "^1.17"
             },
             "require-dev": {
                 "doctrine/instantiator": "^1.1",
                 "guzzlehttp/psr7": "^1.4",
                 "nyholm/psr7": "^1.2",
-                "phpspec/phpspec": "^5.1 || ^6.0",
+                "phpspec/phpspec": "^5.1 || ^6.3 || ^7.1",
                 "phpspec/prophecy": "^1.10.2",
                 "phpunit/phpunit": "^7.5.15 || ^8.5 || ^9.3"
             },
@@ -295,9 +295,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/client-common/issues",
-                "source": "https://github.com/php-http/client-common/tree/2.4.0"
+                "source": "https://github.com/php-http/client-common/tree/2.5.0"
             },
-            "time": "2021-07-05T08:19:25+00:00"
+            "time": "2021-11-26T15:01:24+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -431,16 +431,16 @@
         },
         {
             "name": "php-http/message",
-            "version": "1.11.1",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/message.git",
-                "reference": "887734d9c515ad9a564f6581a682fff87a6253cc"
+                "reference": "39eb7548be982a81085fe5a6e2a44268cd586291"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message/zipball/887734d9c515ad9a564f6581a682fff87a6253cc",
-                "reference": "887734d9c515ad9a564f6581a682fff87a6253cc",
+                "url": "https://api.github.com/repos/php-http/message/zipball/39eb7548be982a81085fe5a6e2a44268cd586291",
+                "reference": "39eb7548be982a81085fe5a6e2a44268cd586291",
                 "shasum": ""
             },
             "require": {
@@ -499,9 +499,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/message/issues",
-                "source": "https://github.com/php-http/message/tree/1.11.1"
+                "source": "https://github.com/php-http/message/tree/1.12.0"
             },
-            "time": "2021-05-24T18:11:08+00:00"
+            "time": "2021-08-29T09:13:12+00:00"
         },
         {
             "name": "php-http/message-factory",
@@ -959,23 +959,23 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v5.3.0",
+            "version": "v5.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "162e886ca035869866d233a2bfef70cc28f9bbe5"
+                "reference": "4b78e55b179003a42523a362cc0e8327f7a69b5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/162e886ca035869866d233a2bfef70cc28f9bbe5",
-                "reference": "162e886ca035869866d233a2bfef70cc28f9bbe5",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/4b78e55b179003a42523a362cc0e8327f7a69b5e",
+                "reference": "4b78e55b179003a42523a362cc0e8327f7a69b5e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/deprecation-contracts": "^2.1",
                 "symfony/polyfill-php73": "~1.0",
-                "symfony/polyfill-php80": "^1.15"
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -1008,7 +1008,7 @@
                 "options"
             ],
             "support": {
-                "source": "https://github.com/symfony/options-resolver/tree/v5.3.0"
+                "source": "https://github.com/symfony/options-resolver/tree/v5.3.7"
             },
             "funding": [
                 {
@@ -1024,7 +1024,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T17:43:10+00:00"
+            "time": "2021-08-04T21:20:46+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
