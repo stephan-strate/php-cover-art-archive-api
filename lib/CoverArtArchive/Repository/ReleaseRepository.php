@@ -47,10 +47,9 @@ class ReleaseRepository extends DefaultRepository
 
     /**
      * {@inheritdoc}
-     * @return Release
      */
-    public function getClass(): Release
+    public function getClass(): string
     {
-        return new Release();
+        return Release::class;
     }
 }
