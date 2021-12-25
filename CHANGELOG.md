@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.0.1] - 2021-12-25
+### Added
+
+### Changed
+- update composer dependencies
+- increased test coverage
+
+### Removed
+
 ## [1.0.0] - 2021-02-14
 ### Added
 
@@ -51,4 +60,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.2-alpha]: https://github.com/stephan-strate/php-cover-art-archive-api/releases/tag/v0.0.2-alpha
 [0.0.3-alpha]: https://github.com/stephan-strate/php-cover-art-archive-api/releases/tag/v0.0.3-alpha
 [1.0.0]: https://github.com/stephan-strate/php-cover-art-archive-api/releases/tag/v1.0.0
-
+[1.0.1]: https://github.com/stephan-strate/php-cover-art-archive-api/releases/tag/v1.0.1
