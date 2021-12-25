@@ -49,5 +49,9 @@
         "psr-4": {
             "CoverArtArchive\\Tests\\": "test/CoverArtArchive/Tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --verbose",
+        "phpstan": "vendor/bin/phpstan analyse --no-progress"
     }
 }

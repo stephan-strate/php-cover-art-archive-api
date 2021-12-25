@@ -84,6 +84,7 @@ abstract class AbstractRepository
     {
         try {
             $class = get_class($this->getClass());
+            // @phpstan-ignore-next-line
             return $this->mapper->denormalize($response, $class, 'json');
         } catch (ExceptionInterface $e) {
             throw new UnexpectedValueException('Mapping failed', 721032211);
