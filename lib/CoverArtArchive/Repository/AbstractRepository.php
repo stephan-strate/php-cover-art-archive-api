@@ -83,9 +83,7 @@ abstract class AbstractRepository
     public function mapResponse($response)
     {
         try {
-            $class = get_class($this->getClass());
-            // @phpstan-ignore-next-line
-            return $this->mapper->denormalize($response, $class, 'json');
+            return $this->mapper->denormalize($response, $this->getClass(), 'json');
         } catch (ExceptionInterface $e) {
             throw new UnexpectedValueException('Mapping failed', 721032211);
         }
@@ -99,7 +97,7 @@ abstract class AbstractRepository
 
     /**
      * Define which model will be used to map the response data to.
-     * @return T
+     * @return string
      */
-    abstract public function getClass();
+    abstract public function getClass(): string;
 }
