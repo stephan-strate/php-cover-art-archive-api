@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+
+### Removed
+
+## [1.0.2] - 2022-01-29
+### Added
+
+### Changed
 - Bump phpunit/phpunit from 9.5.10 to 9.5.13 ([#75](https://github.com/stephan-strate/php-cover-art-archive-api/pull/75), [#85](https://github.com/stephan-strate/php-cover-art-archive-api/pull/85), [#86](https://github.com/stephan-strate/php-cover-art-archive-api/pull/86))
 - Bump phpstan/phpstan from 1.2.0 to 1.4.3 ([#78](https://github.com/stephan-strate/php-cover-art-archive-api/pull/78), [#79](https://github.com/stephan-strate/php-cover-art-archive-api/pull/79), [#80](https://github.com/stephan-strate/php-cover-art-archive-api/pull/80), [#81](https://github.com/stephan-strate/php-cover-art-archive-api/pull/81), [#82](https://github.com/stephan-strate/php-cover-art-archive-api/pull/82), [#84](https://github.com/stephan-strate/php-cover-art-archive-api/pull/84), [#88](https://github.com/stephan-strate/php-cover-art-archive-api/pull/88))
 - Bump symfony/serializer from 5.4.0 to 5.4.3 ([#77](https://github.com/stephan-strate/php-cover-art-archive-api/pull/77), [#89](https://github.com/stephan-strate/php-cover-art-archive-api/pull/89))
@@ -59,9 +66,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added models for all endpoints
 - Added object-oriented response mapping for all endpoints
 
-[Unreleased]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v1.0.2...HEAD
 [0.0.1-alpha]: https://github.com/stephan-strate/php-cover-art-archive-api/releases/tag/v0.0.1-alpha
 [0.0.2-alpha]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v0.0.1-alpha...v0.0.2-alpha
 [0.0.3-alpha]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v0.0.2-alpha...v0.0.3-alpha
 [1.0.0]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v0.0.3-alpha...v1.0.0
 [1.0.1]: https://github.com/stephan-strate/php-cover-art-archive-api/compare/v1.0.0...v1.0.1
+[1.0.2]:https://github.com/stephan-strate/php-cover-art-archive-api/compare/v1.0.1...v1.0.2
