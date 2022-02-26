@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- Bump phpunit/phpunit from 9.5.13 to 9.5.16 ([#95](https://github.com/stephan-strate/php-cover-art-archive-api/pull/95))
 
 ### Removed
 
