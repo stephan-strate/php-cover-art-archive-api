@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Bump phpunit/phpunit from 9.5.13 to 9.5.16 ([#95](https://github.com/stephan-strate/php-cover-art-archive-api/pull/95))
+- Bump phpstan/phpstan from 1.4.3 to 1.4.6 ([#92](https://github.com/stephan-strate/php-cover-art-archive-api/pull/92))
 
 ### Removed
 
