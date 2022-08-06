@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Bump phpunit/phpunit from 9.5.13 to 9.5.21 ([#95](https://github.com/stephan-strate/php-cover-art-archive-api/pull/95), [#102](https://github.com/stephan-strate/php-cover-art-archive-api/pull/102), [#105](https://github.com/stephan-strate/php-cover-art-archive-api/pull/105), [#143](https://github.com/stephan-strate/php-cover-art-archive-api/pull/143))
-- Bump phpstan/phpstan from 1.4.3 to 1.4.10 ([#92](https://github.com/stephan-strate/php-cover-art-archive-api/pull/92), [#103](https://github.com/stephan-strate/php-cover-art-archive-api/pull/103), [#104](https://github.com/stephan-strate/php-cover-art-archive-api/pull/104))
+- Bump phpstan/phpstan from 1.4.3 to 1.8.2 ([#92](https://github.com/stephan-strate/php-cover-art-archive-api/pull/92), [#103](https://github.com/stephan-strate/php-cover-art-archive-api/pull/103), [#104](https://github.com/stephan-strate/php-cover-art-archive-api/pull/104), [#150](https://github.com/stephan-strate/php-cover-art-archive-api/pull/150))
 - Bump php-http/httplug from 2.2.0 to 2.3.0 ([#94](https://github.com/stephan-strate/php-cover-art-archive-api/pull/94))
 - Bump symfony/property-access from 5.4.3 to 5.4.5 ([#96](https://github.com/stephan-strate/php-cover-art-archive-api/pull/96))
 - Bump symfony/serializer from 5.4.3 to 5.4.6 ([#97](https://github.com/stephan-strate/php-cover-art-archive-api/pull/97), [#100](https://github.com/stephan-strate/php-cover-art-archive-api/pull/100))
