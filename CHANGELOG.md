@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump symfony/serializer from 5.4.3 to 5.4.11 ([#97](https://github.com/stephan-strate/php-cover-art-archive-api/pull/97), [#100](https://github.com/stephan-strate/php-cover-art-archive-api/pull/100), [#151](https://github.com/stephan-strate/php-cover-art-archive-api/pull/151))
 - Bump guzzlehttp/guzzle from 7.4.1 to 7.4.5 ([#145](https://github.com/stephan-strate/php-cover-art-archive-api/pull/145))
 - Bump doctrine/annotations from 1.13.2 to 1.13.3 ([#152](https://github.com/stephan-strate/php-cover-art-archive-api/pull/152))
+- Bump php-http/discovery from 1.14.1 to 1.14.3 ([#154](https://github.com/stephan-strate/php-cover-art-archive-api/pull/154))
 
 ### Removed
 
