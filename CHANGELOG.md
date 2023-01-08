@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Bump phpstan/phpstan from 1.8.2 to 1.9.7 ([#183](https://github.com/stephan-strate/php-cover-art-archive-api/pull/183))
+- Bump symfony/serializer from 5.4.11 to 5.4.17 ([#181](https://github.com/stephan-strate/php-cover-art-archive-api/pull/181))
 
 ### Removed
 
